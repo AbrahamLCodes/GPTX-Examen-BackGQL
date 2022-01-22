@@ -1,3 +1,4 @@
+require('dotenv').config()
 const { ApolloServer } = require("apollo-server-express");
 const express = require("express");
 
@@ -7,7 +8,7 @@ const { resolvers } = require("./Schema/Resolvers");
 const app = express();
 const PORT = 3000;
 
-app.listen({ port: PORT }, async () => {
+app.listen({ port: process.env.PORT }, async () => {
     const server = new ApolloServer({ typeDefs, resolvers });
     await server.start();
     server.applyMiddleware({ app });
